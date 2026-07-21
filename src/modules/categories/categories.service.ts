@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/core/database/prisma.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
+import { PrismaService } from '../../core/database/prisma.service';
 
 @Injectable()
 export class CategoriesService {
-    constructor(private prisma: PrismaService) { }
+    constructor(private prisma: PrismaService) {}
 
     async getAllCategory() {
         return this.prisma.category.findMany()
