@@ -1,13 +1,17 @@
-import { IsArray, ValidateNested } from "class-validator";
-import { OrderItemDto } from "./order-item.dto";
-import { Type } from "class-transformer";
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsArray, ValidateNested } from 'class-validator';
+import { OrderItemDto } from './order-item.dto';
 
 export class CreateOrderDto {
-
-    @IsArray()
-    @ValidateNested({
-        each: true
-    })
-    @Type(() => OrderItemDto)
-    items: OrderItemDto[];
-}
+  @ApiProperty({
+    type: [OrderItemDto],
+    description: 'Daftar item produk yang ingin dibeli/dicheckout',
+  })
+  @IsArray()
+  @ValidateNested({
+    each: true,
+  })
+  @Type(() => OrderItemDto)
+  items: OrderItemDto[];
+}
